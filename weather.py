@@ -7,11 +7,14 @@ def check_for_redirect(response):
 
 
 def main():
-    url = 'https://wttr.in/san%20francisco?nTqu&lang=en'
-    response = requests.get(url)
-    response.raise_for_status()
-    check_for_redirect(response)
-    print(response.text)
+    locations = ('Лондон', 'svo', 'Череповец')
+    url_template = 'https://wttr.in/{}?nTqu&lang=en'
+    for location in locations:
+        url = url_template.format(location)
+        response = requests.get(url)
+        response.raise_for_status()
+        check_for_redirect(response)
+        print(response.text)
 
 
 if __name__ == '__main__':
