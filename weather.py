@@ -8,10 +8,11 @@ def check_for_redirect(response):
 
 def main():
     locations = ('Лондон', 'svo', 'Череповец')
-    url_template = 'https://wttr.in/{}?nTqu&lang=en'
+    payload = {'nTqm': '', 'lang': 'ru'}
+    url_template = 'https://wttr.in/{}'
     for location in locations:
         url = url_template.format(location)
-        response = requests.get(url)
+        response = requests.get(url, params=payload)
         response.raise_for_status()
         check_for_redirect(response)
         print(response.text)
